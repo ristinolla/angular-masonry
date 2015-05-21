@@ -125,6 +125,7 @@
         controller: 'MasonryCtrl',
         link: {
           pre: function preLink(scope, element, attrs, ctrl) {
+            if(typeof attrs.useMasonry !== "undefined" && (attrs.useMasonry === false || attrs.useMasonry === "false"))  return;
             var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
             var options = angular.extend({
               itemSelector: attrs.itemSelector || '.masonry-brick',
@@ -158,8 +159,8 @@
         scope: true,
         link: {
           pre: function preLink(scope, element, attrs, ctrl) {
+            if(typeof attrs.useMasonry !== "undefined" && (attrs.useMasonry === false || attrs.useMasonry === "false"))  return;
             var id = scope.$id, index;
-
             ctrl.appendBrick(element, id);
             element.on('$destroy', function () {
               ctrl.removeBrick(id, element);
